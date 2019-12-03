@@ -4,7 +4,7 @@ public class BinarySearch
 {
 
     //По дэфолту left = 0 , right = array.lenght
-    public Integer binarySearchRec(Integer[]array , int key , int left , int right)
+    public int binarySearchRec(int[]array , int key , int left , int right)
     {
         int mid = (left+right)/2;
         if(key == array[mid])
@@ -21,7 +21,7 @@ public class BinarySearch
         }
 
     }
-    public Integer binarySearchIterational(Integer[]array , int key)
+    public int binarySearchIterational(int[]array , int key)
     {
         int left = 0,right = array.length;
 
