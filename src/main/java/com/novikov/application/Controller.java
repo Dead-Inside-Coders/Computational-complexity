@@ -37,7 +37,7 @@ public class Controller
     void buildGraphic(ActionEvent event)
     {
         graphicChart.getData().clear();
-        long[][] array =  graphic.getGraphic(Integer.parseInt(elementsLabel.getText()),complexityBox.getValue());
+        long[][] array =  graphic.getGraphic(Integer.parseInt(elementsLabel.getText())*10,complexityBox.getValue());
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         for (long[] longs : array)
         {

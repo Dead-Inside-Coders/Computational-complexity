@@ -30,11 +30,11 @@ public class Graphic
 
     private long[][] ologn(int elements)
     {
-        long[][] array = new long[elements/5][2];
+        long[][] array = new long[elements/10][2];
         BinarySearch binarySearch = new BinarySearch();
         for (int i = 0, n = 0; n < elements ; i++)
         {
-           n = n+5;
+           n = n+10;
            int[] tempArray = new BubbleSort(shuffleArray(n)).sort();
            long startTime = System.nanoTime();//System.currentTimeMillis();
 
@@ -49,11 +49,11 @@ public class Graphic
 
     private long[][] npow2(int elements)
     {
-        long[][] array = new long[elements/5][2];
+        long[][] array = new long[elements/10][2];
 
         for (int i = 0, n = 0; n < elements ; i++)
         {
-            n = n+5;
+            n = n+10;
             int[] tempArray = shuffleArray(n);
             long startTime = System.nanoTime();
 
@@ -68,10 +68,10 @@ public class Graphic
 
     private long[][] constTime(int elements)
     {
-        long[][] array = new long[elements/5][2];
+        long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
         {
-            n = n+5;
+            n = n+10;
             int[] tempArray = shuffleArray(n);
             long startTime = System.nanoTime();
 
@@ -87,10 +87,10 @@ public class Graphic
 
     private long[][] nTime(int elements)
     {
-        long[][] array = new long[elements/5][2];
+        long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
         {
-            n = n+5;
+            n = n+10;
             int[] tempArray = shuffleArray(n);
             long startTime = System.nanoTime();
 
@@ -105,10 +105,10 @@ public class Graphic
 
     private long[][] npow3(int elements)
     {
-        long[][] array = new long[elements/5][2];
+        long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
         {
-            n = n+5;
+            n = n+10;
             int[][] tempArray = shuffleMatrix(n);
             long startTime = System.nanoTime();
 
