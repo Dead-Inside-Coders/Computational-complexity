@@ -1,13 +1,12 @@
 package com.novikov.graphical;
 
-import com.novikov.algoritms.BinarySearch;
-import com.novikov.algoritms.BubbleSort;
+import com.novikov.algoritms.p.BinarySearch;
+import com.novikov.algoritms.p.BubbleSort;
 
 import java.util.Random;
 
 public class Graphic
 {
-
     public long[][] getGraphic(int elements, String complexity)
     {
         switch (complexity)

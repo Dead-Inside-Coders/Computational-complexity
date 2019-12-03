@@ -1,4 +1,4 @@
-package com.novikov.algoritms;
+package com.novikov.algoritms.p;
 
 public class BinarySearch
 {
