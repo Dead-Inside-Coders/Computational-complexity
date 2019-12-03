@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -20,7 +21,7 @@ public class Controller
     private TextField elementsLabel;
 
     @FXML
-    private LineChart<Long, Long> graphicChart;
+    private LineChart<String, Number> graphicChart;
 
     @FXML
     private Button buildButton;
@@ -37,10 +38,10 @@ public class Controller
     void buildGraphic(ActionEvent event)
     {
         long[][] array =  graphic.getGraphic(Integer.parseInt(elementsLabel.getText()),complexityBox.getValue());
-        XYChart.Series series = new XYChart.Series();
-        for (int i = 0; i <array.length ; i++)
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        for (long[] longs : array)
         {
-            series.getData().add(new XYChart.Data(array[i][0],array[i][1]));
+            series.getData().add(new XYChart.Data<>(String.valueOf(longs[0]), longs[1]));
         }
         graphicChart.getData().add(series);
 

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="531.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.novikov.application.Controller">
+<AnchorPane prefHeight="531.0" prefWidth="708.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.novikov.application.Controller">
    <children>
       <ComboBox fx:id="complexityBox" layoutX="313.0" layoutY="35.0" prefHeight="32.0" prefWidth="149.0" />
       <TextField fx:id="elementsLabel" layoutX="51.0" layoutY="35.0" prefHeight="32.0" prefWidth="167.0" />
-      <LineChart fx:id="graphicChart" layoutX="3.0" layoutY="70.0" prefHeight="454.0" prefWidth="700.0">
+      <LineChart fx:id="graphicChart" layoutX="4.0" layoutY="77.0" prefHeight="454.0" prefWidth="700.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>

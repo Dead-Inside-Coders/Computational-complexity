@@ -12,17 +12,18 @@ public class Graphic
         switch (complexity)
         {
             case "O(1)":
-                break;
+                return new long[0][0];
             case "O(n)":
-                break;
+                return new long[0][0];
             case "O(n^2)":
-                return OLOGN(elements);
+                return new long[0][0];
             case "O(n^3)":
-                break;
+                return new long[0][0];
             case "O(Log n)":
-                break;
+                return OLOGN(elements);
+            default:
+                return new long[0][0];
         }
-        return new long[0][0];
     }
 
 
@@ -30,15 +31,15 @@ public class Graphic
     {
         long[][] array = new long[elements/2][2];
         BinarySearch binarySearch = new BinarySearch();
-        for (int i = 0, n = 0; n < elements/2 ; i++)
+        for (int i = 0, n = 0; n < elements ; i++)
         {
            n = n+2;
            int[] tempArray = new BubbleSort(shuffleArray(n)).sort();
-           long startTime = System.currentTimeMillis();
+           long startTime = System.nanoTime();//System.currentTimeMillis();
 
            binarySearch.binarySearchIterational(tempArray,tempArray[0]);
 
-           long elapsedTime  = System.currentTimeMillis()- startTime;
+           long elapsedTime  = System.nanoTime() - startTime;
            array[i][0] = n;
            array[i][1] = elapsedTime;
         }
