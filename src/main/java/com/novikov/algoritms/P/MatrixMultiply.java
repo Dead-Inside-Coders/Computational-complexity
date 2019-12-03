@@ -1,7 +1,9 @@
 package com.novikov.algoritms.p;
 
-public class MatrixMultiply {
-    public static int[][] matrixMultiply(int[][] A, int B[][], int N) {
+public class MatrixMultiply
+{
+    public int[][] matrixMultiply(int[][] A, int B[][], int N)
+    {
         int[][] C = new int[N][N];
         for(int i = 0; i < N; i++) {
             for(int j = 0; j < N; j++)

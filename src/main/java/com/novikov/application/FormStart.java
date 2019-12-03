@@ -20,7 +20,7 @@ public class FormStart extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Form.fxml"));
-        primaryStage.setTitle("Вход на сервер");
+        primaryStage.setTitle("Сложность");
         primaryStage.setScene(new Scene(root));
         runStage(primaryStage);
     }

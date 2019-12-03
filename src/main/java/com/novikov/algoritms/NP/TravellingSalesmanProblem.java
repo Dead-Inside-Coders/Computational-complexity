@@ -1,66 +1,72 @@
 package com.novikov.algoritms.np;
 
-public class TravellingSalesmanProblem {
+public class TravellingSalesmanProblem
+{
     private int N; //число городов
-    private int[] minWay = new int[N]; // лучший путь(массив номеров городов)
-    private int minLen = Integer.MAX_VALUE; // лучшее расстояние
-   // private int[][] dists = new int[N][N]; // матрица расстояний
-    private static int[][] dists = new int[][] {
-           {-1,20,42,35},
-           {20,-1,30,34},
-           {42,30,-1,12},
-           {35,34,12,-1},
-    };
+    private int[][] dists; // матрица расстояний
+    private int[] cities;
 
-    public void bruteForceTSP() {
-
+    public TravellingSalesmanProblem(int[][] dists)
+    {
+        this.N = dists[0].length;
+        cities = new int[N];
+        this.dists = dists;
+        for (int i = 0; i < cities.length; i++)
+        {
+            cities[i] = i;
+        }
     }
 
-    private static void permutation(int[] array, int lf) {
-        if(lf >= array.length){                           // перестановки окончены
-            print(array,calculateDistance(array,dists));                 // выводим перестановку
+    private void permutation( int lf) {
+        if(lf >= cities.length)
+        {                           // перестановки окончены
+            print(calculateDistance(dists));                 // выводим перестановку
             return;
         }
 
-        permutation(array, lf+1);                                // перестановки элементов справа от lf
-        for(int i=lf+1; i < array.length; i++){           // теперь каждый элемент ar[i], i > lf
-            swap(array, lf, i);                            // меняем местами с ar[lf]
-            permutation(array, lf+1 );                            // и снова переставляем всё справа
-            swap(array, lf, i);                            // возвращаем элемент ar[i] назад
+        permutation( lf+1);                                // перестановки элементов справа от lf
+        for(int i=lf+1; i < cities.length; i++){           // теперь каждый элемент ar[i], i > lf
+            swap( lf, i);                            // меняем местами с ar[lf]
+            permutation( lf+1 );                            // и снова переставляем всё справа
+            swap(lf, i);                            // возвращаем элемент ar[i] назад
         }
     }
 
-    private static void swap(int[] array, int i, int j){
-        int temp = array[i];
-        array[i] = array[j];
-        array[j]=temp;
+    private void swap( int i, int j)
+    {
+        int temp = cities[i];
+        cities[i] = cities[j];
+        cities[j] = temp;
     }
 
-    private static void print(int[] array, int d) {
-        for (int item : array) {
+    private void print( int d) {
+        for (int item : cities) {
             System.out.print(item);
         }
         System.out.print(" dist = " + d);
         System.out.print('\n');
     }
 
-    private static int calculateDistance(int[] array,int[][] dists)
+    private  int calculateDistance(int[][] dists)
     {
-        int d = dists[0][array[0]] + dists[array[array.length-1]][0]; // начало и конец
-        for(int i=1; i < array.length; i++)
-            d += dists[array[i-1]][array[i]];                 // между ar[i-1] и ar[i]
+        int d = dists[0][cities[0]] + dists[cities[cities.length-1]][0]; // начало и конец
+        for(int i=1; i < cities.length; i++)
+            d += dists[cities[i-1]][cities[i]];                 // между ar[i-1] и ar[i]
         return d;                                      // длина пути перестановки ar
     }
 
 
     public static void main(String[] args) {
-        int[] cities = new int[4];
+        int[][] dists = new int[][] {
+                {0,20,42,35},
+                {20,0,30,34},
+                {42,30,0,12},
+                {35,34,12,0},
+        };
+        TravellingSalesmanProblem travellingSalesmanProblem = new TravellingSalesmanProblem(dists);
 
-        for (int i = 0; i < 4; i++) {
-            cities[i] = i;
-        }
-
-        permutation(cities,1);
+        travellingSalesmanProblem.permutation(1);
+        //permutation(cities,1);
 
     }
 }
