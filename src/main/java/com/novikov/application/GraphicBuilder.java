@@ -2,12 +2,16 @@ package com.novikov.application;
 
 import com.novikov.algoritms.np.TravellingSalesmanProblem;
 import com.novikov.algoritms.p.*;
+import com.novikov.validation.InputDataException;
+import com.novikov.validation.Validatiton;
 
 import java.util.Random;
 
 public class GraphicBuilder
 {
-    public long[][] buildGraphic(int elements, String complexity)
+    private final int INPUT_NUMBER_MULTIPLIER = 10;
+
+    public long[][] buildGraphic(String elements, String complexity)  throws InputDataException
     {
         switch (complexity)
         {
@@ -28,11 +32,16 @@ public class GraphicBuilder
         }
     }
      // 2 - 400
-    private long[][] logarithmicTime(int elements)
+    private long[][] logarithmicTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
+        Validatiton validatiton = new Validatiton(elements,400);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
+
+        int elementsCount = validatiton.getInputNumber() * INPUT_NUMBER_MULTIPLIER;
+
+        long[][] array = new long[elementsCount/10][2];
         BinarySearch binarySearch = new BinarySearch();
-        for (int i = 0, n = 0; n < elements ; i++)
+        for (int i = 0, n = 0; n < elementsCount ; i++)
         {
            n = n+10;
            int[] tempArray = new BubbleSort(shuffleArray(n)).sort();
@@ -48,11 +57,16 @@ public class GraphicBuilder
     }
 
     // 2 - 200
-    private long[][] quadraticTime(int elements)
+    private long[][] quadraticTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
+        Validatiton validatiton = new Validatiton(elements,200);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
 
-        for (int i = 0, n = 0; n < elements ; i++)
+        int elementsCount = validatiton.getInputNumber();
+
+        long[][] array = new long[elementsCount/10][2];
+
+        for (int i = 0, n = 0; n < elementsCount ; i++)
         {
             n = n+10;
             int[] tempArray = shuffleArray(n);
@@ -68,10 +82,15 @@ public class GraphicBuilder
     }
 
     //2 - 1000
-    private long[][] constantTime(int elements)
+    private long[][] constantTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
-        for (int i = 0, n = 0; n < elements ; i++)
+        Validatiton validatiton = new Validatiton(elements,1000);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
+
+        int elementsCount = validatiton.getInputNumber() * INPUT_NUMBER_MULTIPLIER;
+
+        long[][] array = new long[elementsCount/10][2];
+        for (int i = 0, n = 0; n < elementsCount ; i++)
         {
             n = n + 10;
             int[] tempArray = shuffleArray(n);
@@ -88,12 +107,17 @@ public class GraphicBuilder
     } 
 
     // 2 - 1000 
-    private long[][] linearTime(int elements)
+    private long[][] linearTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
-        for (int i = 0, n = 0; n < elements ; i++)
+        Validatiton validatiton = new Validatiton(elements,1000);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
+
+        int elementsCount = validatiton.getInputNumber() * INPUT_NUMBER_MULTIPLIER;
+
+        long[][] array = new long[elementsCount/10][2];
+        for (int i = 0, n = 0; n < elementsCount; i++)
         {
-            n = n+10;
+            n = n + 10;
             int[] tempArray = shuffleArray(n);
             long startTime = System.nanoTime();
 
@@ -106,10 +130,16 @@ public class GraphicBuilder
         return array;
     }
 
-    private long[][] cubicTime(int elements)
+    //2 - 30
+    private long[][] cubicTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
-        for (int i = 0, n = 0; n < elements ; i++)
+        Validatiton validatiton = new Validatiton(elements,30);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
+
+        int elementsCount = validatiton.getInputNumber() * INPUT_NUMBER_MULTIPLIER;
+
+        long[][] array = new long[elementsCount/10][2];
+        for (int i = 0, n = 0; n < elementsCount; i++)
         {
             n = n+10;
             int[][] tempArray = shuffleMatrix(n);
@@ -125,10 +155,15 @@ public class GraphicBuilder
     }
 
     // 2 - 9
-    private long[][] factorialTime(int elements)
+    private long[][] factorialTime(String elements) throws InputDataException
     {
-        long[][] array = new long[elements/10][2];
-        for (int i = 0, n = 0; n < elements/10; i++)
+        Validatiton validatiton = new Validatiton(elements,9);
+        if (!validatiton.isValid()) throw new InputDataException(validatiton.getMessage());
+
+        int elementsCount = validatiton.getInputNumber() * INPUT_NUMBER_MULTIPLIER;
+
+        long[][] array = new long[elementsCount/10][2];
+        for (int i = 0, n = 0; n < elementsCount/10; i++)
         {
             n++;
             int[][] tempArray = shuffleDistanceMatrix(n);
