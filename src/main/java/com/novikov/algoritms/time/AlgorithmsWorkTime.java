@@ -3,16 +3,16 @@ package com.novikov.algoritms.time;
 import com.novikov.algoritms.np.TravellingSalesmanProblem;
 import com.novikov.algoritms.p.*;
 import com.novikov.validation.InputDataException;
-import com.novikov.validation.Validatiton;
 
 import java.util.Random;
 
 public class AlgorithmsWorkTime
 {
-    private final int INPUT_NUMBER_MULTIPLIER = 10;
+    private int elementsCount;
 
     public long[][] buildGraphic(int elements, String complexity)  throws InputDataException
     {
+        elementsCount = elements*10;
         switch (complexity)
         {
             case "O(1) - Нахождение среднего элемента массива":
@@ -35,11 +35,9 @@ public class AlgorithmsWorkTime
     private long[][] logarithmicTime(int elements) throws InputDataException
     {
 
-        int elementsCount = elements * INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
         BinarySearch binarySearch = new BinarySearch();
-        for (int i = 0, n = 0; n < elementsCount ; i++)
+        for (int i = 0, n = 0; n < elementsCount; i++)
         {
            n = n+10;
            int[] tempArray = new BubbleSort(shuffleArray(n)).sort();
@@ -58,10 +56,7 @@ public class AlgorithmsWorkTime
     private long[][] quadraticTime(int elements) throws InputDataException
     {
 
-
-        int elementsCount = elements *INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
 
         for (int i = 0, n = 0; n < elementsCount ; i++)
         {
@@ -81,10 +76,7 @@ public class AlgorithmsWorkTime
     //2 - 1000
     private long[][] constantTime(int elements) throws InputDataException
     {
-
-        int elementsCount = elements * INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
         for (int i = 0, n = 0; n < elementsCount ; i++)
         {
             n = n + 10;
@@ -105,9 +97,7 @@ public class AlgorithmsWorkTime
     private long[][] linearTime(int elements) throws InputDataException
     {
 
-        int elementsCount = elements * INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
         for (int i = 0, n = 0; n < elementsCount; i++)
         {
             n = n + 10;
@@ -126,10 +116,7 @@ public class AlgorithmsWorkTime
     //2 - 30
     private long[][] cubicTime(int elements) throws InputDataException
     {
-
-        int elementsCount = elements* INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
         for (int i = 0, n = 0; n < elementsCount; i++)
         {
             n = n+10;
@@ -148,10 +135,7 @@ public class AlgorithmsWorkTime
     // 2 - 9
     private long[][] factorialTime(int elements) throws InputDataException
     {
-
-        int elementsCount = elements * INPUT_NUMBER_MULTIPLIER;
-
-        long[][] array = new long[elementsCount/10][2];
+        long[][] array = new long[elements][2];
         for (int i = 0, n = 0; n < elementsCount/10; i++)
         {
             n++;
