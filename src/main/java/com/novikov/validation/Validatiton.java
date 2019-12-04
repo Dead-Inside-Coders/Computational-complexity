@@ -3,43 +3,28 @@ package com.novikov.validation;
 public class Validatiton {
 
     private String input;
-    private int inputNumber;
     private int maxCount;
-    private final int minCount = 2;
-    private String message;
 
-    public Validatiton(String algorithmName, String input)
+    public Validatiton(String algorithmName, String input) throws InputDataException
     {
         this.input = input;
         this.maxCount = getMaxValue(algorithmName);
-        message = "";
-        inputNumber = -1;
     }
 
     public boolean isValid() throws InputDataException {
 
-        if (!input.isEmpty() && tryParseInt(input)) {
-            inputNumber = Integer.parseInt(input);
-        }
-        else {
+        if (input.isEmpty() && !tryParseInt(input))
+        {
             throw new InputDataException("Введите число");
         }
-
-        if (inputNumber >= minCount && inputNumber <= maxCount) {
-            return true;
+        int inputNumber = Integer.parseInt(input);
+        if (!(inputNumber >= 2 && inputNumber <= maxCount))
+        {
+            throw new InputDataException("Число точек - от " + 2 + " до " + maxCount);
         }
-        else {
-            throw new InputDataException("Число точек - от " + minCount + " до " + maxCount);
-        }
+        return true;
     }
 
-    public int getInputNumber() {
-        return inputNumber;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 
     private static boolean tryParseInt(String value)
     {
@@ -54,7 +39,7 @@ public class Validatiton {
         }
     }
 
-    private int getMaxValue(String algorithmName)
+    private int getMaxValue(String algorithmName) throws InputDataException
     {
         switch (algorithmName)
         {
@@ -69,9 +54,9 @@ public class Validatiton {
             case "O(Log n) - Бинарный поиск":
                 return 400;
             case "O(n!) - Задача коммивояжера":
-                return 9;
+                return 10;
             default:
-                return -1;
+                throw new InputDataException("Выберите алгоритм");//Так не робит
         }
     }
 }
