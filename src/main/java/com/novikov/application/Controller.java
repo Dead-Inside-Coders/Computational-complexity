@@ -9,6 +9,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 
 public class Controller
 {
@@ -27,9 +28,10 @@ public class Controller
 
     private Graphic graphic;
 
+
     public void initialize()
     {
-        complexityBox.setItems(FXCollections.observableArrayList("O(1)","O(n)","O(n^2)","O(n^3)","O(Log n)","O(n!)"));
+        complexityBox.setItems(FXCollections.observableArrayList("O(1) - Нахождение среднего элемента массива","O(n) - Линейный поиск","O(n^2) - Сортировка пузырьком","O(n^3) - Умножение матриц","O(Log n) - Бинарный поиск","O(n!) - Задача коммивояжера"));
         graphic = new Graphic();
     }
 

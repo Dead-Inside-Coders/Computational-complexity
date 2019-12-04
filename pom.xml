@@ -29,12 +29,12 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>${javafx.version}</version>
+      <version>11</version>
     </dependency>
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-fxml</artifactId>
-      <version>${javafx.version}</version>
+      <version>11</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/com.commsen.stopwatch.api/stopwatch -->
 

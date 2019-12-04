@@ -1,5 +1,6 @@
 package com.novikov.graphical;
 
+import com.novikov.algoritms.np.TravellingSalesmanProblem;
 import com.novikov.algoritms.p.*;
 
 import java.util.Random;
@@ -10,25 +11,24 @@ public class Graphic
     {
         switch (complexity)
         {
-            case "O(1)":
-                return constTime(elements);
-            case "O(n)":
-                return nTime(elements);
-            case "O(n^2)":
-                return npow2(elements);
-            case "O(n^3)":
-                return npow3(elements);
-            case "O(Log n)":
-                return ologn(elements);
-            case "O(n!)":
-                return new long[0][0];
+            case "O(1) - Нахождение среднего элемента массива":
+                return constantTime(elements);
+            case "O(n) - Линейный поиск": 
+                return linearTime(elements);
+            case "O(n^2) - Сортировка пузырьком":
+                return quadraticTime(elements);
+            case "O(n^3) - Умножение матриц":
+                return cubicTime(elements);
+            case "O(Log n) - Бинарный поиск":
+                return logarithmicTime(elements);
+            case "O(n!) - Задача коммивояжера":
+                return factorialTime(elements);
             default:
                 return new long[0][0];
         }
     }
 
-
-    private long[][] ologn(int elements)
+    private long[][] logarithmicTime(int elements)
     {
         long[][] array = new long[elements/10][2];
         BinarySearch binarySearch = new BinarySearch();
@@ -47,7 +47,7 @@ public class Graphic
         return array;
     }
 
-    private long[][] npow2(int elements)
+    private long[][] quadraticTime(int elements)
     {
         long[][] array = new long[elements/10][2];
 
@@ -66,12 +66,12 @@ public class Graphic
         return array;
     }
 
-    private long[][] constTime(int elements)
+    private long[][] constantTime(int elements)
     {
         long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
         {
-            n = n+10;
+            n = n + 10;
             int[] tempArray = shuffleArray(n);
             long startTime = System.nanoTime();
 
@@ -83,9 +83,9 @@ public class Graphic
         }
         return array;
 
-    }
+    } 
 
-    private long[][] nTime(int elements)
+    private long[][] linearTime(int elements)
     {
         long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
@@ -103,7 +103,7 @@ public class Graphic
         return array;
     }
 
-    private long[][] npow3(int elements)
+    private long[][] cubicTime(int elements)
     {
         long[][] array = new long[elements/10][2];
         for (int i = 0, n = 0; n < elements ; i++)
@@ -114,6 +114,22 @@ public class Graphic
 
             new MatrixMultiply().matrixMultiply(tempArray,tempArray,n);
 
+            long elapsedTime  = System.nanoTime() - startTime;
+            array[i][0] = n;
+            array[i][1] = elapsedTime;
+        }
+        return array;
+    }
+
+    private long[][] factorialTime(int elements)
+    {
+        long[][] array = new long[elements/10][2];
+        for (int i = 0, n = 0; n < elements/10; i++)
+        {
+            n++;
+            int[][] tempArray = shuffleDistanceMatrix(n);
+            long startTime = System.nanoTime();
+            new TravellingSalesmanProblem(tempArray).permutation(1);
             long elapsedTime  = System.nanoTime() - startTime;
             array[i][0] = n;
             array[i][1] = elapsedTime;
@@ -140,10 +156,31 @@ public class Graphic
         {
             for (int j = 0; j < length; j++)
             {
-                array[i][j] = new Random().nextInt(length);
+                array[i][j] = new Random().nextInt(length) + 1;
+            }
+        }
+            return array;
+    }
+
+    private int[][] shuffleDistanceMatrix(int length) {
+        int[][] array = shuffleMatrix(length);
+        for (int j=0; j < array.length; j++) {
+            array[j][j] = 0;                                // диагональные элементы
+            for (int i=j+1; i < array.length; i++) { //  заполняем справа от диагонали матрицу зеркально
+                array[j][i]=array[i][j];
             }
         }
         return array;
+    }
+
+    public static void main(String[] args) {
+        int[][] array = new Graphic().shuffleDistanceMatrix(5);
+        for (int i = 0; i < array[0].length; i = i + 1) {
+            for (int j = 0; j < array[0].length; j = j + 1) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
     }
 
 
