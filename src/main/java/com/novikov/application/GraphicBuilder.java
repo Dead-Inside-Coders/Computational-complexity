@@ -1,19 +1,19 @@
-package com.novikov.graphical;
+package com.novikov.application;
 
 import com.novikov.algoritms.np.TravellingSalesmanProblem;
 import com.novikov.algoritms.p.*;
 
 import java.util.Random;
 
-public class Graphic
+public class GraphicBuilder
 {
-    public long[][] getGraphic(int elements, String complexity)
+    public long[][] buildGraphic(int elements, String complexity)
     {
         switch (complexity)
         {
             case "O(1) - Нахождение среднего элемента массива":
                 return constantTime(elements);
-            case "O(n) - Линейный поиск": 
+            case "O(n) - Линейный поиск":
                 return linearTime(elements);
             case "O(n^2) - Сортировка пузырьком":
                 return quadraticTime(elements);
@@ -27,7 +27,7 @@ public class Graphic
                 return new long[0][0];
         }
     }
-
+     // 2 - 400
     private long[][] logarithmicTime(int elements)
     {
         long[][] array = new long[elements/10][2];
@@ -47,6 +47,7 @@ public class Graphic
         return array;
     }
 
+    // 2 - 200
     private long[][] quadraticTime(int elements)
     {
         long[][] array = new long[elements/10][2];
@@ -66,6 +67,7 @@ public class Graphic
         return array;
     }
 
+    //2 - 1000
     private long[][] constantTime(int elements)
     {
         long[][] array = new long[elements/10][2];
@@ -85,6 +87,7 @@ public class Graphic
 
     } 
 
+    // 2 - 1000 
     private long[][] linearTime(int elements)
     {
         long[][] array = new long[elements/10][2];
@@ -121,6 +124,7 @@ public class Graphic
         return array;
     }
 
+    // 2 - 9
     private long[][] factorialTime(int elements)
     {
         long[][] array = new long[elements/10][2];
@@ -174,7 +178,7 @@ public class Graphic
     }
 
     public static void main(String[] args) {
-        int[][] array = new Graphic().shuffleDistanceMatrix(5);
+        int[][] array = new GraphicBuilder().shuffleDistanceMatrix(5);
         for (int i = 0; i < array[0].length; i = i + 1) {
             for (int j = 0; j < array[0].length; j = j + 1) {
                 System.out.print(array[i][j] + " ");
