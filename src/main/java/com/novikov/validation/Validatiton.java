@@ -8,29 +8,28 @@ public class Validatiton {
     private final int minCount = 2;
     private String message;
 
-    public Validatiton(String input, int maxCount) {
+    public Validatiton(String algorithmName, String input)
+    {
         this.input = input;
-        this.maxCount = maxCount;
+        this.maxCount = getMaxValue(algorithmName);
         message = "";
         inputNumber = -1;
     }
 
-    public boolean isValid() {
+    public boolean isValid() throws InputDataException {
 
         if (!input.isEmpty() && tryParseInt(input)) {
             inputNumber = Integer.parseInt(input);
         }
         else {
-            message = "Введите число";
-            return false;
+            throw new InputDataException("Введите число");
         }
 
         if (inputNumber >= minCount && inputNumber <= maxCount) {
             return true;
         }
         else {
-            message = "Число точек - от " + minCount + " до " + maxCount;
-            return false;
+            throw new InputDataException("Число точек - от " + minCount + " до " + maxCount);
         }
     }
 
@@ -52,6 +51,27 @@ public class Validatiton {
         catch (NumberFormatException e)
         {
             return false;
+        }
+    }
+
+    private int getMaxValue(String algorithmName)
+    {
+        switch (algorithmName)
+        {
+            case "O(1) - Нахождение среднего элемента массива":
+                return 1000;
+            case "O(n) - Линейный поиск":
+                return 1000;
+            case "O(n^2) - Сортировка пузырьком":
+                return 200;
+            case "O(n^3) - Умножение матриц":
+                return 30;
+            case "O(Log n) - Бинарный поиск":
+                return 400;
+            case "O(n!) - Задача коммивояжера":
+                return 9;
+            default:
+                return -1;
         }
     }
 }
